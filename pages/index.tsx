@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import type { NextPage } from "next";
+import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import { Footer } from "../components/Organism/Footer";
 import { Header } from "../components/Organism/Header";
-import { ListProduct } from "../components/Organism/ListProduct";
+import ListProduct, { ListProductProps } from "../components/Organism/ListProduct";
 import { Main } from "../components/Organism/Main";
-
- const Home: NextPage = () => {
+import { config } from "../config";
+interface Props  extends NextPageContext {
+  products: ListProductProps[];
+}
+ const Home: NextPage<Props> = (props:Props) => {
   return (
     <div className="m-auto max-w-[1024px]">
       <Head>
@@ -16,10 +19,37 @@ import { Main } from "../components/Organism/Main";
       </Head>
       <Header />
       <Main />
-      <ListProduct/>
+      <ListProduct products={props.products}/>
       <Footer />
     </div>
   );
 };
+
+export async function getStaticProps(){
+  try {
+  const data = await fetch(`${config.api}/api/products`);
+  const products = await data.json();
+  const mapperProducts = products.map((product: any) => {
+    return {
+      ...product,
+      isFavorite: false,
+    };
+  });
+  return {
+    props: {
+      products: mapperProducts
+    },
+    revalidate: 30
+  }
+  } catch (error) {
+    return {
+      props: {
+        products: []  
+      },
+      revalidate: 30
+    }
+  }
+  
+}
 
 export default Home;
