@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { config } from "../../config";
+import { useState } from "react";
 import { IProduct } from "../../interface/IProduct";
 import { Product } from "./Product";
 
@@ -13,27 +12,11 @@ interface Props  extends React.HTMLAttributes<HTMLDivElement> {
 const ListProduct = (props: Props) => {
   const [products, setProducts] = useState<ListProductProps[]>(props?.products);
 
-  useEffect(() => {
-    if(!props?.products.length) fetchData();
-  }, []);
-  
   const toggleFavorite = (id: any) => {
     const index = products.findIndex((item) => item.id === id);
     products[index].isFavorite = !products[index].isFavorite;
     const newList = [...products];
     setProducts(newList);
-  };
-
-  const fetchData = async () => {
-    const data = await fetch(`${config.api}/api/products`);
-    const products = await data.json();
-    const mapperProducts = products.map((product: any) => {
-      return {
-        ...product,
-        isFavorite: false,
-      };
-    });
-    setProducts(mapperProducts);
   };
 
   return (
