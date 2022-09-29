@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { useState } from "react";
+import { config } from "../../config";
 import { ButtonGradient } from "../Atom/ButtonGradient";
 import { Ellipse } from "../Atom/Ellipse";
 import { Heart } from "../Atom/Heart";
@@ -34,12 +36,12 @@ export const Product = (props: ProductProps) => {
         <div className="opacity-20 md:opacity-90 md:block relative z-20 ">
           <Ellipse className="w-[200px] h-[200px]" />
         </div>
-        <img
+        <Image
           className="z-30 w-[500px]  md:opacity-90 md:w-[700px] md:h-[400px]"
-          src={imageUrl}
+          src={`${config.api}/${imageUrl}`}
           alt={`Product ${name}`}
-          width={500}
-          height={400}
+          width={600}
+          height={500}
         />
         {isFavorite ? (
           <button className="absolute m-5 left-0 z-30" onClick={toggle}>

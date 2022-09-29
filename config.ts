@@ -1,3 +1,3 @@
 export const config = {
-    api:  'https://chocolates-api.vercel.app/' 
+    api:  'https://chocolates-api.vercel.app' 
 }

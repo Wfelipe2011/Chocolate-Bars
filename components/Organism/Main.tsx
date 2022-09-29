@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { config } from "../../config";
 import { ButtonGradient } from "../Atom/ButtonGradient";
 import { Ellipse } from "../Atom/Ellipse";
 
@@ -20,12 +22,12 @@ export const Main = () => {
         <div className=" opacity-20 md:opacity-90 md:block relative z-20 mt-20">
           <Ellipse />
         </div>
-        <img
-          className="opacity-40 z-30 w-[500px]  md:opacity-90 md:w-[700px]"
-          src="hero-bg.png"
+        <Image
+          className="opacity-40 z-30 w-[700px]  md:opacity-90 md:w-[800px]"
+          src={`${config.api}/hero-bg.png`}
           alt="Background image"
-          width={500}
-          height={500}
+          width={700}
+          height={600}
         />
       </div>
     </main>
