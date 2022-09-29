@@ -20,7 +20,7 @@ const ListProduct = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="w-max md:w-full">
       {products.length ? (
         <h3 id="Product" className="text-lg my-12 px-8">
         Products
