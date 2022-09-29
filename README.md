@@ -18,9 +18,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Componetização
 
 #### Como eu sei que SSG está funcionando?
-- Bem a aplicação consome os produtos de uma outra [api]('https://chocolates-api.vercel.app/api/products'). Essa retorna uma lista de produtos de forma aleatória.
+- Bem a aplicação consome os produtos de uma outra api que retorna uma lista de produtos de forma aleatória.
 - Porém a aplicação só consome a api a cada 30 segundos.
 - Assim a ordem dos produtos em tela só deve mudar depois que se passar 30 segundos.
+
+#### O endereço da api para testes.
+- [API](https://chocolates-api.vercel.app/api/products)
   
 ##  Layout 🔖
 No link abaixo você encontra o layout que inspirou o projeto:
