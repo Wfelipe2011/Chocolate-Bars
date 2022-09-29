@@ -17,6 +17,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Renderização SSG
 - Componetização
 
+#### Como eu sei que SSG está funcionando?
+- Bem a aplicação consome os produtos de uma outra [api]('https://chocolates-api.vercel.app/api/products'). Essa retorna uma lista de produtos de forma aleatória.
+- Porém a aplicação só consome a api a cada 30 segundos.
+- Assim a ordem dos produtos em tela só deve mudar depois que se passar 30 segundos.
+  
 ##  Layout 🔖
 No link abaixo você encontra o layout que inspirou o projeto:
 - [Layout](https://www.figma.com/community/file/1076612207781052174)
