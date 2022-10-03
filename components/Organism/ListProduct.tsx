@@ -5,32 +5,34 @@ import { Product } from "./Product";
 export interface ListProductProps extends IProduct {
   isFavorite: boolean;
 }
-interface Props  extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   products: ListProductProps[];
 }
 
 const ListProduct = (props: Props) => {
-  const [products, setProducts] = useState<ListProductProps[]>(props?.products);
+  const [products, setProducts] = useState<ListProductProps[]>(props.products);
 
-  const toggleFavorite = (id: any) => {
-    const index = products.findIndex((item) => item.id === id);
-    products[index].isFavorite = !products[index].isFavorite;
-    const newList = [...products];
-    setProducts(newList);
-  };
+  const toggleFavorite = (id: any) =>{
+    const newProducts = products.map((item) => {
+      if (item.id !== id) return item;
+      return { ...item, isFavorite: !item.isFavorite };
+    });
+    setProducts(newProducts);
+  }
 
   return (
     <div className="w-max md:w-full">
       {products.length ? (
         <h3 id="Product" className="text-lg my-12 px-8">
-        Products
-      </h3>
-      ):""}
+          Products
+        </h3>
+      ) : ""}
+
       <div className="flex flex-col justify-center md:flex-wrap md:flex-row">
         {products.map((product) => (
           <Product
             key={product.id}
-            {...product}
+            product={product}
             toggleFavorite={toggleFavorite}
           />
         ))}
@@ -39,6 +41,5 @@ const ListProduct = (props: Props) => {
   );
 };
 
- 
 
 export default ListProduct;

@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { useState } from "react";
 import { config } from "../../config";
 import { ButtonGradient } from "../Atom/ButtonGradient";
 import { Ellipse } from "../Atom/Ellipse";
@@ -8,19 +7,14 @@ import { Heart } from "../Atom/Heart";
 import { HeartFull } from "../Atom/HeartFull";
 import { ListProductProps } from "./ListProduct";
 
-interface ProductProps extends ListProductProps {
+interface ProductProps  {
+  product: ListProductProps;
   toggleFavorite: (id: string) => void
 }
 
-export const Product = (props: ProductProps) => {
-  const { id, name, salePrice, listPrice, imageUrl } = props;
-  const [isFavorite, setIsFavorite] = useState(props.isFavorite);
+export const Product = ({product, toggleFavorite}: ProductProps) => {
+  const { id, name, salePrice, listPrice, imageUrl,isFavorite } = product;
 
-  const toggle = () => {
-    setIsFavorite(!isFavorite);
-    props.toggleFavorite(id);
-  };
-  
   const buyNow = () => {
     alert(
       JSON.stringify(
@@ -44,11 +38,11 @@ export const Product = (props: ProductProps) => {
           height={500}
         />
         {isFavorite ? (
-          <button className="absolute m-5 left-0 z-30" onClick={toggle}>
+          <button className="absolute m-5 left-0 z-30" onClick={() => toggleFavorite(id)}>
             <HeartFull />
           </button>
         ) : (
-          <button className="absolute m-5 left-0 z-30" onClick={toggle}>
+          <button className="absolute m-5 left-0 z-30" onClick={() => toggleFavorite(id)}>
             <Heart />
           </button>
         )}
